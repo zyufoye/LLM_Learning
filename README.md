@@ -8,3 +8,5 @@ Record the learning and experimental process of some LLMs.
 ## 2.Transformer快速入门
 参考教程《Transformer快速入门》@[Transformer快速入门](https://transformers.run/)。
 
+## 3.Hello-Agents
+从零开始构建智能体系统原理与实践教程@[Hello-Agents](https://github.com/datawhalechina/hello-agents)。
