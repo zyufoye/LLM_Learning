@@ -157,7 +157,7 @@ llm = OpenAICompatibleClient(
 )
 
 # --- 2. 初始化 ---
-user_prompt = "你好，请帮我查询一下今天北京的天气，然后根据天气推荐一个合适的旅游景点。"
+user_prompt = "你好，查询北京天气，然后根据天气推荐景点。"
 prompt_history = [f"用户请求: {user_prompt}"]
 
 print(f"用户输入: {user_prompt}\n" + "="*40)
@@ -168,9 +168,11 @@ for i in range(5): # 设置最大循环次数
     
     # 3.1. 构建Prompt
     full_prompt = "\n".join(prompt_history)
+    print("Full_Prompt:" + "\n" + full_prompt + "\n" )
     
     # 3.2. 调用LLM进行思考
-    llm_output = llm.generate(full_prompt, system_prompt=AGENT_SYSTEM_PROMPT)
+    llm_output = llm.generate(full_prompt, 
+                  system_prompt=AGENT_SYSTEM_PROMPT)
     print(f"模型输出:\n{llm_output}\n")
     prompt_history.append(llm_output)
     
@@ -182,7 +184,8 @@ for i in range(5): # 设置最大循环次数
     action_str = action_match.group(1).strip()
 
     if action_str.startswith("finish"):
-        final_answer = re.search(r'finish\(answer="(.*)"\)', action_str).group(1)
+        final_answer = re.search(r'finish\(answer="(.*)"\)',
+                         action_str).group(1)
         print(f"任务完成，最终答案: {final_answer}")
         break
     
